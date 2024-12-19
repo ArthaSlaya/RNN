@@ -22,7 +22,7 @@ class DataIngestion:
         
         print(f"Loading data from {file_path}...")
 
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(file_path, encoding= 'ISO-8859-1')
         print(f"Data loaded with shape: {df.shape}")
         return df
 
