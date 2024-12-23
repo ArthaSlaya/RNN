@@ -5,8 +5,8 @@ folders = [
     "data/raw",                        # For raw datasets
     "data/processed",                  # For processed datasets
     "data/embeddings",                 # For pretrained embeddings
-    "src/pipelines",                   # For ZenML pipeline definitions
-    "src/steps",                       # For pipeline steps
+    "pipelines",                   # For ZenML pipeline definitions
+    "steps",                       # For pipeline steps
     "deployment/app",                  # For deployment scripts
     "streamlit_app/components",        # For Streamlit web app components
     "models",                          # For saved models
