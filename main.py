@@ -1,14 +1,30 @@
+import os
+import sys
+import argparse
+
 from steps.data_ingestion_step import data_ingestion_step
-from steps.handle_missing_values_step import handle_missing_values_step
 
-if __name__ == "__main__":
+def main():
     """
-    Entry point for the script.
+    Main function to orchestrate the entire project.
     """
-    print("Starting data ingestion...")
-    data_ingestion_step()
-    print("Data ingestion completed successfully.")
+    parser = argparse.ArgumentParser(description= 'MLOps Project Main Entry Point.')
+    parser.add_argument(
+        '--task',
+        choices= ['ingest', 'train', 'deploy'],
+        help= "Task to execute: ingest | train | deploy"
+    )
 
-    print("Starting missing values handling...")
-    handle_missing_values_step()
-    print("Missing values handling completed.")
+    args = parser.parse_args()
+
+    if args.task == 'ingest':
+        print("Starting data ingestion step...")
+        data_ingestion_step()
+    elif args.task == 'train':
+        print("Training task is not implemented yet.")
+
+    elif args.task == "deploy":
+        print("Deployment task is not implemented yet.")
+
+if __name__ == '__main__':
+    main()
