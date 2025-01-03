@@ -2,7 +2,7 @@ import os
 
 # Define the expected folder structure
 folders = [
-    "data/raw",                        # For raw datasets
+    "data/archive",                        # For raw datasets
     "data/processed",                  # For processed datasets
     "data/embeddings",                 # For pretrained embeddings
     "pipelines",                   # For ZenML pipeline definitions
@@ -11,6 +11,7 @@ folders = [
     "streamlit_app/components",        # For Streamlit web app components
     "models",                          # For saved models
     "logs",                            # For logs
+    "scripts"                          # Scripts to execute pipelines
 ]
 
 # Function to check and create folders

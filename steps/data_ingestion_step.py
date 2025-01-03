@@ -1,21 +1,14 @@
 import os
 import sys
+from zenml.steps import step
+import dvc.api
 
-from src.data_ingestion import DataIngestion
+from src.data_ingestion import DataIngestion, load_and_save
 
-def load_and_save(file_name: str, ingestion: DataIngestion) -> None:
+@step
+def data_ingestion_step() -> None:
     """
-    Loads a dataset and saves it as-is.
-    """
-    df = ingestion.load_data(file_name= file_name)
-
-    processed_filename = f"processed_{file_name}"
-    ingestion.save_data(df, processed_filename)
-
-
-def data_ingestion_step():
-    """
-    Handles data ingestion for all datasets.
+    Step: Handles data ingestion for all datasets using the load_and_save function and tracks them with DVC.
     """
     raw_data_path = "./data/archive"
     processed_data_path = "./data/processed"
@@ -34,9 +27,11 @@ def data_ingestion_step():
     # Load and save each file
     for file_name in file_names:
         print(f"\nProcessing file: {file_name}")
-        df = ingestion.load_data(file_name= file_name)
-        processed_file_name = f"processed_{file_name}"
-        ingestion.save_data(df= df, file_name= processed_file_name)
+        load_and_save(file_name= file_name, ingestion= ingestion)
 
-
-    
+    # Track raw and processed data with DVC
+    print(f'\nTracking raw and processed data with DVC...')
+    os.system('dvc add data/archive')
+    os.system('dvc add data/processed')
+    os.system('git add data/archive.dvc data/processed.dvc .gitignore')
+    os.system("git commit -m 'Track raw and procesed data with DVC'")
