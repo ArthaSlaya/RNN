@@ -1,6 +1,10 @@
 # Ignore all files in the data directory except .dvc files
-data/
-!data/**/*.dvc
+!data/*.dvc
+data/archive
+data/embeddings
+data/processed
+data/processed_with_no_missing
+data/archive.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
