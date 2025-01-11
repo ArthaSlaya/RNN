@@ -2,7 +2,7 @@ import os
 import sys
 import argparse
 
-from steps.data_ingestion_step import data_ingestion_step
+from scripts.run_data_ingestion_pipeline import run_data_ingestion_pipeline
 from steps.preprocessing_step import preprocessing_step
 from steps.advanced_preprocessing_step import advanced_preprocessing_step
 
@@ -33,7 +33,7 @@ def main():
 
     if args.task == 'ingest':
         print("Starting data ingestion step...")
-        data_ingestion_step()
+        run_data_ingestion_pipeline()
 
     elif args.task == 'preprocess':
         print("Starting data preprocessing step...")
