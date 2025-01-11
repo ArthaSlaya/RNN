@@ -3,7 +3,7 @@ import sys
 import argparse
 
 from scripts.run_data_ingestion_pipeline import run_data_ingestion_pipeline
-from steps.preprocessing_step import preprocessing_step
+from scripts.run_preprocessing_pipeline import run_preprocessing_pipeline
 from steps.advanced_preprocessing_step import advanced_preprocessing_step
 
 project_root = os.path.dirname(os.path.abspath(__file__))
@@ -37,7 +37,7 @@ def main():
 
     elif args.task == 'preprocess':
         print("Starting data preprocessing step...")
-        preprocessing_step()
+        run_preprocessing_pipeline()
 
     elif args.task == 'advanced_preprocess':
         print("Starting advanced preprocessing step...")
