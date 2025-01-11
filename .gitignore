@@ -1,10 +1,9 @@
 # Ignore all files in the data directory except .dvc files
-!data/*.dvc
-data/archive
-data/embeddings
-data/processed
-data/processed_with_no_missing
-data/archive.zip
+./data/archive
+./data/embeddings
+./data/processed
+./data/processed_with_no_missing
+./data/archive.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -167,3 +166,17 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 service_credentials.json
+data/archive.zip
+data/archive/.DS_Store
+data/archive/test.csv
+data/archive/train.csv
+data/archive/testdata.manual.2009.06.14.csv
+data/archive/training.1600000.processed.noemoticon.csv
+data/processed/processed_test.csv
+data/processed/processed_testdata.manual.2009.06.14.csv
+data/processed/processed_train.csv
+data/processed/processed_training.1600000.processed.noemoticon.csv
+data/processed_with_no_missing/processed_test.csv
+data/processed_with_no_missing/processed_testdata.manual.2009.06.14.csv
+data/processed_with_no_missing/processed_train.csv
+data/processed_with_no_missing/processed_training.1600000.processed.noemoticon.csv
