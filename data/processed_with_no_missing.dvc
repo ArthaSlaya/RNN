@@ -1,0 +1,6 @@
+outs:
+- md5: 394f0518faa7d386259dd54cab5889c8.dir
+  size: 150086759
+  nfiles: 4
+  hash: md5
+  path: processed_with_no_missing
