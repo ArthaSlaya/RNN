@@ -1,4 +1,7 @@
 [core]
     remote = myremote
+
 ['remote "myremote"']
     url = gdrive://1E2NkB8mYoJsHfAcok4MPIxZm_G3BDwIV
+    gdrive_use_service_account = true
+    gdrive_service_account_json_file_path = /Users/karan/Siddu/GitHub/RNN/service_credentials.json
