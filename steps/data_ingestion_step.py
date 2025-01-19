@@ -10,6 +10,7 @@ def data_ingestion_step() -> None:
     """
     Step: Handles data ingestion for all datasets using the load_and_save function and tracks them with DVC.
     """
+    print("Ingesting data...")
     raw_data_path = "./data/archive"
     processed_data_path = "./data/processed"
 
