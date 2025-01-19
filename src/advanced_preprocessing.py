@@ -1,11 +1,15 @@
 import pandas as pd
-from nltk.stem import PorterStemmer
+from nltk.stem import PorterStemmer, WordNetLemmatizer
 from nltk.corpus import stopwords
 import re
+from textblob import TextBlob
+from contractions import fix
+import emoji
 
 class AdvancedPreprocessing:
     def __init__(self):
         self.stemmer = PorterStemmer()
+        self.lemmatizer = WordNetLemmatizer()
         self.stop_words = set(stopwords.words('english'))
 
     @staticmethod
@@ -32,18 +36,50 @@ class AdvancedPreprocessing:
         stemmed_words = [self.stemmer.stem(word) for word in words]
         return " ".join(stemmed_words)
     
+    def apply_lemmatization(self, text: str) -> str:
+        """
+        Applies lemmatization to the text.
+        """
+        words = text.split()
+        lemmatized_words = [self.lemmatizer.lemmatize(word= word) for word in words]
+        return " ".join(lemmatized_words)
+    
+    @staticmethod
+    def correct_spelling(text: str) -> str:
+        """
+        Corrects spelling in the text.
+        """
+        return str(TextBlob(text= text).correct())
+    
+    @staticmethod
+    def expand_contraction(text: str) -> str:
+        """
+        Expands contractions in the text.
+        """
+        return fix(text)
+    
+    @staticmethod
+    def remove_empjis(text: str) -> str:
+        """
+        Removes emojis from the text.
+        """
+        return emoji.replace_emoji(string= text, replace= '')
+    
     def clean_text(self, text: str) -> str:
         """
         Cleans the text by:
         - Lowercasing.
         - Removing URLs, special characters, and extra whitespace.
+        - Expanding contractions.
         """
         if not isinstance(text, str):
             return ""
         
         text = text.lower()  # Convert to lowercase
+        text = self.expand_contraction(text= text) # Expand contractions
         text = re.sub(r"http\S+|www\S+|https\S+", "", text)  # Remove URLs
         text = self.remove_user_mentions(text)  # Remove user mentions
+        text = self.remove_empjis(text= text) # Remove emojis
         text = re.sub(r"[^a-zA-Z\s]", "", text)  # Remove special characters and numbers
         text = re.sub(r"\s+", " ", text).strip()  # Remove extra whitespace
         return text
@@ -53,7 +89,8 @@ class AdvancedPreprocessing:
         Applies the complete preprocessing pipeline:
         - Cleans text.
         - Removes stopwords.
-        - Applies stemming.
+        - Applies stemming or lemmatization.
+        - Corrects spelling (optional).
         """
         print(f"Applying advanced preprocessing to column: {text_col}")
 
@@ -65,5 +102,11 @@ class AdvancedPreprocessing:
 
         # Apply stemming
         df[text_col] = df[text_col].apply(self.apply_stemming)
+
+        # Apply stemming
+        df[text_col] = df[text_col].apply(self.apply_lemmatization)
+
+        # Correct spelling
+        df[text_col] = df[text_col].apply(self.correct_spelling)
 
         return df
