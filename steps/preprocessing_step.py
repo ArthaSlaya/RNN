@@ -1,13 +1,16 @@
 import os
 import sys
 import pandas as pd
+from zenml.steps import step
 
 from src.preprocessing import Preprocessing
 
+@step
 def preprocessing_step():
     """
     Task: Preprocess training datasets.
     """
+
     raw_data_path = "./data/archive"
     processed_data_path = "./data/processed"
 
@@ -80,3 +83,11 @@ def preprocessing_step():
         processed_file_path = os.path.join(processed_data_path, f"processed_{file_name}")
         processed_df.to_csv(processed_file_path, index=False)
         print(f"Processed data saved to: {processed_file_path}")
+
+    # Track raw and processed data with DVC
+    print("\nTracking raw and processed data with DVC...")
+    os.system(f'dvc add {raw_data_path}')
+    os.system(f'dvc add {processed_data_path}')
+    os.system(f'git add {raw_data_path}.dvc {processed_data_path}.dvc .gitignore')
+    os.system("git commit -m 'Track raw and processed data with DVC'")
+    print("Preprocessing completed and tracked with DVC.")
