@@ -4,7 +4,7 @@ import argparse
 
 from scripts.run_data_ingestion_pipeline import run_data_ingestion_pipeline
 from scripts.run_preprocessing_pipeline import run_preprocessing_pipeline
-from steps.advanced_preprocessing_step import advanced_preprocessing_step
+from scripts.run_advanced_preprocessing_pipeline import run_advanced_preprocessing_pipeline
 
 project_root = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(project_root)
@@ -41,7 +41,7 @@ def main():
 
     elif args.task == 'advanced_preprocess':
         print("Starting advanced preprocessing step...")
-        advanced_preprocessing_step()
+        run_advanced_preprocessing_pipeline()
 
     elif args.task == 'train':
         print("Training task is not implemented yet.")
