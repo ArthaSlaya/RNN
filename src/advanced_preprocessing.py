@@ -1,22 +1,13 @@
 import os
 import nltk
 
-# Set up custom NLTK data directory
-# 1. Create a Custom NLTK Data Directory
-nltk_data_dir = os.path.join(os.getcwd(), 'nltk_data')
+# Determine the project root directory
+current_file_path = os.path.abspath(__file__) # Get the absolute path of this file
+project_root = os.path.dirname(os.path.dirname(current_file_path)) # Navigate two levels up to the project root
 
-# Creates the nltk_data folder if it doesn't exist.
-# The exist_ok=True ensures no error is raised if the folder already exists.
-os.makedirs(name= nltk_data_dir, exist_ok= True)
-
-# 2. Add the Directory to NLTK's Data Search Path
-# NLTK has a list of directories where it looks for its resources (e.g., stopwords).
-# nltk.data.path.append(nltk_data_dir) tells NLTK to also check the newly created nltk_data directory for resources.
-nltk.data.path.append(nltk_data_dir)
-
-# 3. Download the Stopwords Resource
-# Downloads the stopwords resource and saves it in the nltk_data directory you just created.
-nltk.download('stopwords', download_dir= nltk_data_dir)
+# Add the nltk_data folder path from the project root
+nltk_data_path = os.path.join(project_root, 'nltk_data')
+nltk.data.path.append(nltk_data_path)
 
 import re
 import emoji

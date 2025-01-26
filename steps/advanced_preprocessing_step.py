@@ -2,6 +2,7 @@ import os
 import sys
 import logging
 import pandas as pd
+from zenml.steps import step
 from concurrent.futures import ThreadPoolExecutor
 
 # Add the project root directory to the Python path
@@ -40,10 +41,12 @@ from src.advanced_preprocessing import AdvancedPreprocessing
 # Set up logging
 logging.basicConfig(level= logging.INFO, format= '%(asctime)s - %(levelname)s - %(message)s')
 
+@step(enable_cache= False)
 def advanced_preprocessing_step():
     """
     Task: Load processed data, apply advanced preprocessing methods, and save results.
     """
+    print("Executing the advanced preprocessing step.")
     processed_data_path = "./data/processed"
     transformed_data_path = "./data/transformed"
 

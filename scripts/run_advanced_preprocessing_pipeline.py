@@ -12,12 +12,6 @@ def run_advanced_preprocessing_pipeline():
     logging.info("Initializing the advanced preprocessing pipeline...")
 
     # Instantiate the pipeline
-    pipeline_instance = advanced_preprocessing_pipeline(
-        advanced_preprocessing_step= advanced_preprocessing_step()
-    )
-
-    # Run the pipeline
-    logging.info("Running the advanced preprocessing pipeline...")
-    pipeline_instance.run()
+    advanced_preprocessing_pipeline()
 
     logging.info("Advanced preprocessing pipeline completed successfully.")

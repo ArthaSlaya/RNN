@@ -10,4 +10,5 @@ def advanced_preprocessing_pipeline():
     2. Applying advanced preprocessing methods.
     3. Saving the transformed data.
     """
+    print('Starting Step')
     advanced_preprocessing_step()
